@@ -1,3 +1,7 @@
+import time
+from asyncio import sleep
+
+
 def print_matrix(matrix):
     countdown = 0
     countright = 0
@@ -13,29 +17,29 @@ def print_matrix(matrix):
         if countdown % 3 == 0: print("----- | ----- | -----")
 
 
-def check_new_entry(matrix, c, r):
-    new = matrix[r][c]
+def check_new_entry(matrix, val, c, r):
     for i in range(9):
-        if matrix[i][c] == new and i != r:
+        if matrix[i][c] == val and i != r:
             return False
     for j in range(9):
-        if matrix[r][j] == new and j != c:
+        if matrix[r][j] == val and j != c:
             return False
     for i in range(c - c % 3, c - c % 3 + 3):
         for j in range(r - r % 3, r - r % 3 + 3):
             if i == c and j == r: continue
-            if matrix[j][i] == new:
+            if matrix[j][i] == val:
                 return False
     return True
 
 
 def solve_matrix(matrix, c, r):
+    time.sleep(0.001)
     if matrix[r][c] == 9:
         matrix[r][c] = 0
         return False
 
     matrix[r][c] += 1
-    if check_new_entry(matrix, c, r):
+    if check_new_entry(matrix, matrix[r][c], c, r):
         (i, j) = find_empty(matrix)
         if (i, j) == (9, 9) or solve_matrix(matrix, j, i):
             return True
@@ -61,6 +65,6 @@ def find_empty(matrix):
 def start_matrix_solve(matrix):
     (i, j) = find_empty(matrix)
     if (i, j) == (9, 9):
-        return True
+        return matrix, True
     else:
-        return solve_matrix(matrix, j, i)
+        return matrix, solve_matrix(matrix, j, i)

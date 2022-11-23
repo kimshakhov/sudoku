@@ -1,6 +1,7 @@
 import time
 import test_boards
 import solver
+import play_GUI
 
 if __name__ == '__main__':
     matrix_to_solve = test_boards.T_1
