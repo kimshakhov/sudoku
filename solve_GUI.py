@@ -64,15 +64,11 @@ def draw_info(surf, fnt):
 
 
 class Cube:
-    rows = 9
-    cols = 9
-
     def __init__(self, value, row, col, width, height):
         self.value = value
         self.row = row
         self.col = col
         self.width = width
-        self.height = height
 
     def draw(self, surf, fnt):
         gap = self.width / 9
@@ -109,7 +105,7 @@ def run_GUI(matrix):
                     solved = True
                 if event.key == pygame.K_n:
                     print("making new board")
-                    matrix = sudoku_gen.gen_sudoku(40)
+                    matrix = sudoku_gen.get_sudoku(40)
                     board = Grid(matrix, 540, 540)
                     solved = False
                 if event.key == pygame.K_q:
