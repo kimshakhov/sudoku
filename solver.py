@@ -52,13 +52,13 @@ def find_empty(matrix):
     i, j = 0, 0
     while i < 9 and j < 9:
         if matrix[i][j] == 0:
-            return (i, j)
+            return i, j
         if j != 8:
             j, i = j + 1, i
         elif i != 8:
             j, i = 0, i + 1
         else:
-            return (9, 9)
+            return 9, 9
 
 
 def start_matrix_solve(matrix):

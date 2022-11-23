@@ -1,5 +1,6 @@
 import pygame
 import solver
+import sudoku_gen
 
 
 class Grid:
@@ -33,7 +34,7 @@ class Grid:
         self.cubes = [[Cube(self.board[i][j], i, j, self.width, self.height) for j in range(9)] for i in range(9)]
 
     def solve(self):
-        solve_res = solver.start_matrix_solve(self.board)
+        _ = solver.start_matrix_solve(self.board)
         solver.print_matrix(self.board)
         self.update_cubes()
 
@@ -56,8 +57,8 @@ class Grid:
 
 
 def draw_solve(surf, fnt):
-    text = fnt.render("space to", True, (0, 0, 0))
-    text2 = fnt.render("solve", True, (0, 0, 0))
+    text = fnt.render("space - solve", True, (0, 0, 0))
+    text2 = fnt.render("N - new sudoku", True, (0, 0, 0))
     surf.blit(text, (30, 550))
     surf.blit(text2, (30, 590))
 
@@ -96,17 +97,22 @@ def run_GUI(matrix):
     pygame.display.set_caption("Sudoku")
     board = Grid(matrix, 540, 540)
     run = True
-    started_solve = False
+    solved = False
 
     while run:
         redraw_window(surf, fnt, board)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE and not started_solve:
+                if event.key == pygame.K_SPACE and not solved:
                     start = solver.find_empty(board.board)
-                    board.animated_solve(start[0], start[1], surf, fnt)
-                    started_solve = True
+                    board.animated_solve(start[1], start[0], surf, fnt)
+                    solved = True
+                if event.key == pygame.K_n:
+                    print("making new board")
+                    matrix = sudoku_gen.gen_sudoku(40)
+                    board = Grid(matrix, 540, 540)
+                    solved = False
                 if event.key == pygame.K_q:
                     run = False
 
