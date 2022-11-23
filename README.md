@@ -1,2 +1,2 @@
 # sudoku
- sudoku solver with GUI and DLX algorithm using cython
+ sudoku solver with GUI
