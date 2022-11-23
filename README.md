@@ -1,2 +1,2 @@
 # sudoku
- sudoku solver with GUI
+ sudoku solver with visualization and ability to generate new sudoku
