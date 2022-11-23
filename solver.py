@@ -33,7 +33,6 @@ def check_new_entry(matrix, val, c, r):
 
 
 def solve_matrix(matrix, c, r):
-    time.sleep(0.001)
     if matrix[r][c] == 9:
         matrix[r][c] = 0
         return False
