@@ -1,6 +1,3 @@
-import time
-from asyncio import sleep
-
 
 def print_matrix(matrix):
     countdown = 0

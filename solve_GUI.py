@@ -28,7 +28,7 @@ class Grid:
             for j in range(self.cols):
                 self.cubes[i][j].draw(surf, fnt)
 
-        draw_solve(surf, fnt)
+        draw_info(surf, fnt)
 
     def update_cubes(self):
         self.cubes = [[Cube(self.board[i][j], i, j, self.width, self.height) for j in range(9)] for i in range(9)]
@@ -56,7 +56,7 @@ class Grid:
             return self.animated_solve(c, r, surf, fnt)
 
 
-def draw_solve(surf, fnt):
+def draw_info(surf, fnt):
     text = fnt.render("space - solve", True, (0, 0, 0))
     text2 = fnt.render("N - new sudoku", True, (0, 0, 0))
     surf.blit(text, (30, 550))
@@ -73,7 +73,6 @@ class Cube:
         self.col = col
         self.width = width
         self.height = height
-        self.selected = False
 
     def draw(self, surf, fnt):
         gap = self.width / 9

@@ -1,5 +1,4 @@
 import multiprocessing
-import time
 
 import solve_GUI
 import test_boards
@@ -16,14 +15,11 @@ class Process(multiprocessing.Process):
         if self.id == 0:
             solve_GUI.run_GUI(self.matrix)
         if self.id == 1:
+            print("welcome To Kim's sudoku solver")
             solver.print_matrix(self.matrix)
-            t0 = time.time()
             is_solvable = solver.start_matrix_solve(self.matrix)
-            t1 = time.time()
-            print()
             solver.print_matrix(self.matrix)
             print(is_solvable[1])
-            print(t1 - t0)
 
 
 if __name__ == '__main__':
